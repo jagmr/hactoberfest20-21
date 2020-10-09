@@ -1,0 +1,79 @@
+
+// VIRTUAL BASE CLASS 
+
+/*When a class is made a Virtual base class ,C++ takes necessary care to see that only
+ one copy of that class is inherited ,to the child class 
+regardless of how many inheritance paths exist between the virtual base class and a derived class.  */
+
+#include <iostream>
+using namespace std;
+
+class student{
+	protected:
+		int roll_number;
+	public:
+		void get_number(int a ){
+			roll_number=a;
+		}
+		void put_number(){
+			cout<<"  Roll No: "<<roll_number<<endl;
+		}
+};
+
+class test:public virtual student{
+	protected:
+		float part1,part2;
+		public:
+			void get_marks(float x, float y){
+				part1=x;part2=y;
+			}
+			void put_marks(){
+				cout<<"  Marks Obtained: "<<endl;
+				cout<<"  Part 1: "<<part1<<endl;
+				cout<<"  Part 2: "<<part2<<endl;
+			}
+};
+
+class  sports: virtual public student{  //The Keywords virtual and public may be used in either order.
+	protected:
+		float score;
+	public:
+		void get_score(float a ){
+			score = a;
+		}
+		void put_score(){
+			cout<<"  Sports wt: "<<score<<endl;
+		}
+};
+
+class result :  public test, public sports {
+	protected:
+		float total;
+	public:
+		void display();
+};
+
+void result :: display(void){
+	total=part1+part2+score;
+	
+	put_number();
+	put_marks();
+	put_score();
+	
+	cout<<"  Total Score: "<<total<<endl;
+}
+
+int main(){
+	result student_1;
+	
+	student_1.get_number(2019404564);
+	student_1.get_marks(49.5,50);
+	student_1.get_score(7.0);
+	student_1.display();
+	
+	return 0;
+}
+
+/* in the above example only one copy of roll_number variables is inherited by the result class
+  from the student class. Thus , any change made to roll_number by any of the derived class are 
+  made to this single instance. this ensures data integrity . */

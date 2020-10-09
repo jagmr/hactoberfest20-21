@@ -1,0 +1,127 @@
+#include<iostream>
+#define maxsize 100 
+using namespace std ;
+
+struct stack{
+	
+	int top;
+	int stk[maxsize];    
+};
+
+typedef struct stack;
+stack s;
+
+int count = 0;
+
+ void push(void){
+    
+    int no;
+ 	cout<<"-------------------------\n";
+ 	cout<<" Enter the no : ";
+ 	cin>>no;
+ 	
+ 	  	s.top = s.top + 1;
+ 	  	s.stk[s.top] = no ; 
+		count++ ;     
+		return;          
+ }
+ 	  	
+void pop(){
+	
+    if(s.top == -1 ){
+        cout<<"-------------------------\n";
+ 	  	cout<<" Oops! Stack is Empty.\n";
+    	return;     }
+    	
+    else{
+    	cout<<"-------------------------\n";
+    	cout<<" Poped element is : "<<s.stk[s.top]<<endl; 
+		s.top = s.top - 1 ;
+		count--; }
+ }
+ 
+ void display(){
+ 	
+ 	if(s.top == -1){
+ 		cout<<"-------------------------\n";
+ 		cout<<" Oops! Stack is Empty. \n";
+	 }
+	 
+	else{
+		for(int i=s.top ; i>=0 ; i--){
+		cout<<  s.stk[s.top]<<endl;	}
+	}
+ }
+ 
+ void topelement(){
+ 	cout<<"-------------------------\n";
+ 	cout<<" The Top Element is : "<<s.stk[s.top]<<endl;
+ }
+ 
+ void totalcount(){
+ 	cout<<"-------------------------\n";
+ 	cout<<" Total Elements in Stack : "<<count<<endl;
+}
+
+void empty(){
+	
+	while( s.top != -1 ){
+	 pop();	}
+	cout<<"-------------------------\n";
+	cout<<" Stack is Empty now!\n ";
+}
+ 
+ int main(){
+	
+ int choice ;
+ s.top = -1;
+ 
+ cout<<" Stack Implimentation . \n";
+ cout<<"-------------------------\n";
+ cout<<"  Push         --->  1 \n";
+ cout<<"  Pop          --->  2 \n";
+ cout<<"  Top Element  --->  3 \n"; 
+ cout<<"  Display      --->  4 \n";
+ cout<<"  Total Count  --->  5 \n";
+ cout<<"  Empty        --->  6 \n";
+ cout<<"  Exit         --->  7 \n"; 
+ cout<<"-------------------------\n";
+ 
+  while(1){
+  	
+ 	cout<<"-------------------------\n";
+ 	cout<<" Enter the operation : ";
+ 	cin>>choice ;
+ 	
+ 	  switch(choice ){
+ 	  	
+ 	  	case 1:
+ 	  		push();
+ 	  		break;
+ 	  	case 2:
+ 	  		pop();
+ 	  		break;
+ 	  	case 3:
+ 	  		topelement();
+ 	  		break;
+ 	  	case 4 :
+ 	  		display();
+ 	  		break;
+ 	  	case 5 :
+ 	  		totalcount();
+ 	  		break;
+ 	  	case 6:
+ 	  		empty();
+ 	  		break;
+ 	  	case 7:
+ 	  		exit(0);
+ 	  		break;
+ 	  	default:
+ 	  		cout<<" Error! Please enter the correct operation. \n";
+ 	  		break;
+	   }
+	}
+ }
+ 
+
+    	
